@@ -21,3 +21,19 @@ export const createProject = (project) => {
       });
   };
 };
+
+export const removeProject = (projectId) => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+    firestore
+      .collection("projects")
+      .doc(projectId)
+      .delete()
+      .then(() => {
+        dispatch({ type: "REMOVE_PROJECT", projectId });
+      })
+      .catch((err) => {
+        dispatch({ type: "REMOVE_PROJECT_ERROR", err });
+      });
+  };
+};

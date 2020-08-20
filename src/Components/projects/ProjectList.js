@@ -6,6 +6,7 @@ const ProjectList = ({ projects }) => {
   const projectList =
     projects &&
     projects.map((project) => {
+      console.log(project);
       return (
         <Link to={"/project/" + project.id} key={project.id}>
           <ProjectSummary project={project} />;
